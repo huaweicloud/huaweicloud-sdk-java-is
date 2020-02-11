@@ -36,17 +36,18 @@ public class ImageSearchDemo
         ImageSearchService imageSearchService2 = new ImageSearchService(token);
 
 
-        //根据用户名和模型创建实例
+        //根据用户名和模型创建实例,注：图片自定义标签的命名不支持字母大写，可参考tag1此类命名
         ArrayList<String> createServiceTag = new ArrayList<>();
-        createServiceTag.add("Tag1");
-        createServiceTag.add("Tag2");
+        createServiceTag.add("tag1");
+        createServiceTag.add("tag2");
+        // 创建实例的图片数量规格目前仅支持30000000 model参数当前common-search、image-recommend、image-copyright、furniture-search(仅支持国内站)
         printResult(imageSearchService.requestCreateService(projectId, instanceName, "image-copyright",
                 "register service for user model test.",
                 createServiceTag,
-                1000000));
+                30000000));
         //添加图像索引，使用图像的Base64
         HashMap<String, String> createIndexTags = new HashMap<>();
-        createIndexTags.put("Tag1","test-image");
+        createIndexTags.put("tag1","test-image");
         printResult(imageSearchService.requestCreateIndexBase64(projectId, instanceName, "data/is-demo-1.jpg",
                 "data/is-demo-1.jpg",createIndexTags));
 
