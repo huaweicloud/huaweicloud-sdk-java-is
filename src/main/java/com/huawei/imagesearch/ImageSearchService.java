@@ -15,19 +15,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 调用图像搜索的工具类，对相关参数和网络请求进行了封装
  */
 public class ImageSearchService
 {
-
+    private static Map<String,String> endpointMap = new HashMap<String, String>();
     private String token;
     private String ak;
     private String sk;
     private boolean useToken = true;
     private AccessServiceUtil accessServiceUtil = null;
-    private String endPointUrl = "https://imagesearch.cn-north-1.myhuaweicloud.com";
+    private String endPointUrl;
+
+    static {
+        /*  图像搜索服务的区域和终端节点信息可以从如下地址查询
+         *  http://developer.huaweicloud.com/dev/endpoint
+         * */
+        endpointMap.put("cn-north-1", "https://imagesearch.cn-north-1.myhuaweicloud.com");
+        endpointMap.put("cn-north-4", "https://imagesearch.cn-north-4.myhuaweicloud.com");
+        endpointMap.put("ap-southeast-1", "https://imagesearch.ap-southeast-1.myhuaweicloud.com");
+    }
 
     /**
      * 传入用户token，使用此构造函数，则后续请求全都是用token方式鉴权
@@ -41,12 +51,12 @@ public class ImageSearchService
     /**
      * 传入用户token，使用此构造函数，则后续请求全都是用token方式鉴权
      * @param token token认证串
-     * @param endPointUrl endPoint地址
+     * @param region 服务所在region信息
      */
-    public ImageSearchService(String token, String endPointUrl){
+    public ImageSearchService(String token, String region){
         this.useToken = true;
         this.token = token;
-        this.endPointUrl = endPointUrl;
+        this.endPointUrl = endpointMap.get(region);
     }
 
     /**
@@ -76,9 +86,9 @@ public class ImageSearchService
         this.useToken = false;
         this.ak = ak;
         this.sk = sk;
+        this.endPointUrl = endpointMap.get(region);
         this.accessServiceUtil = new AccessServiceUtil(ak, sk, serviceName, region);
     }
-
 
     private static final String REGISTER_SERVICE_URL = "%s/v1/%s/service";
     /**
