@@ -82,7 +82,7 @@ public class TokenUtil
     public static String getToken(String username, String password, String projectName)
             throws URISyntaxException, UnsupportedOperationException, IOException {
         String requestBody = requestBody(username, password, username, projectName);
-        String url = "https://iam.cn-north-1.myhuaweicloud.com/v3/auth/tokens";
+        String url = "https://iam.myhuaweicloud.com/v3/auth/tokens";
 
         Header[] headers = new Header[]{new BasicHeader("Content-Type", ContentType.APPLICATION_JSON.toString())};
         StringEntity stringEntity = new StringEntity(requestBody, "utf-8");
