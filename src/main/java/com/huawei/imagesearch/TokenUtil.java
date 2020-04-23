@@ -53,10 +53,6 @@ public class TokenUtil
         JSONObject scopeProject = new JSONObject();
         scopeProject.put("name", projectName);
 
-        JSONObject projectDomain = new JSONObject();
-        projectDomain.put("name", domainName);
-        scopeProject.put("domain", projectDomain);
-
         scope.put("project", scopeProject);
 
         auth.put("identity", identity);
@@ -79,9 +75,9 @@ public class TokenUtil
      * @throws UnsupportedOperationException
      * @throws IOException
      */
-    public static String getToken(String username, String password, String projectName)
+    public static String getToken(String username, String password, String domainName, String projectName)
             throws URISyntaxException, UnsupportedOperationException, IOException {
-        String requestBody = requestBody(username, password, username, projectName);
+        String requestBody = requestBody(username, password, domainName, projectName);
         String url = "https://iam.myhuaweicloud.com/v3/auth/tokens";
 
         Header[] headers = new Header[]{new BasicHeader("Content-Type", ContentType.APPLICATION_JSON.toString())};
