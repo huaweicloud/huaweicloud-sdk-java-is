@@ -15,7 +15,7 @@ public class ImageSearchDemo
      */
     public static void main(String[] args) throws URISyntaxException, UnsupportedOperationException, IOException
     {
-
+        String domainName = "***";      //账户为主账号，此处输入与用户名一致，若为子账号，此处输入为主账户用户名
         String username = "zhangsan";    // 此处，请输入用户名
         String password = "***";      // 此处，请输入对应用户名的密码
         String projectName = "cn-north-1"; // 此处，请输入服务的区域信息，参考地址: http://developer.huaweicloud.com/dev/endpoint
@@ -30,7 +30,7 @@ public class ImageSearchDemo
         ImageSearchService imageSearchService = new ImageSearchService(service, region, ak, sk);
 
         //使用用户名密码获取token，后续使用token进行鉴权
-        String token = TokenUtil.getToken(username, password, projectName); //获取token
+        String token = TokenUtil.getToken(username, password, domainName, projectName); //获取token
         System.out.println(token);
         //使用token进行鉴权的方式
         ImageSearchService imageSearchService2 = new ImageSearchService(token, projectName);
