@@ -29,13 +29,11 @@ public class AccessServiceUtil extends  HttpClientBase
 
     private String ak;
     private String sk;
-    private String serviceName;
     private String region;
     private Signer signer;
     public AccessServiceUtil(String ak, String sk, String serviceName, String region){
         this.ak = ak;
         this.sk = sk;
-        this.serviceName = serviceName;
         this.region = region;
         this.signer = SignerFactory.getSigner(serviceName, region);
     }
@@ -50,7 +48,7 @@ public class AccessServiceUtil extends  HttpClientBase
      */
     public HttpResponse executeWithAkSk(HttpMethodName httpMethod ,
             String url, Header[] headers, HttpEntity entity){
-        DefaultRequest request = new DefaultRequest(serviceName);
+        DefaultRequest request = new DefaultRequest();
         long contentLength = 0;
         if(null != entity){
             contentLength = entity.getContentLength();
@@ -208,11 +206,6 @@ public class AccessServiceUtil extends  HttpClientBase
     public String getSk()
     {
         return sk;
-    }
-
-    public String getServiceName()
-    {
-        return serviceName;
     }
 
     public String getRegion()
