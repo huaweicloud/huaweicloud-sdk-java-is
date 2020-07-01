@@ -65,11 +65,11 @@ public class ImageSearchDemo
                 10, 0, createIndexTags));
 
         //搜索相似图像，使用图像的URL(当前仅支持OBS图像的URL)
-        printResult(imageSearchService.requestSearchSimUrl(projectId, instanceName, "https://bucketName.obs.myhwclouds.com/image/test2.jpg",
+        printResult(imageSearchService.requestSearchSimUrl(projectId, instanceName, "https://bucketName.obs.myhuaweicloud.com/image/test2.jpg",
                 10, 0 , null));
 
         //根据图片自定义标签搜索相似图像，使用图像的URL
-        printResult(imageSearchService.requestSearchSimUrl(projectId, instanceName, "https://bucketName.obs.myhwclouds.com/image/test2.jpg",
+        printResult(imageSearchService.requestSearchSimUrl(projectId, instanceName, "https://bucketName.obs.myhuaweicloud.com/image/test2.jpg",
                 10, 0 , createIndexTags));
 
         //搜索相似图像,使用图像标签
