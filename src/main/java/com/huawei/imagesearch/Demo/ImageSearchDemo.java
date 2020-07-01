@@ -53,29 +53,37 @@ public class ImageSearchDemo
 
         //添加图像索引，使用图像的URL(当前仅支持OBS图像的URL)
         printResult(imageSearchService.requestCreateIndexUrl(projectId, instanceName,
-                "https://bucketName.obs.myhwclouds.com/image/test1.jpg", createIndexTags));
+                "https://bucketName.obs.myhuaweicloud.com/image/test1.jpg", createIndexTags));
 
 
         //搜索相似图像，使用图像的Base64
         printResult(imageSearchService.requestSearchSimBase64(projectId, instanceName, "data/is-demo-2.jpg",
                 10, 0, null));
 
+        //根据图片自定义标签搜索图像
+        printResult(imageSearchService.requestSearchSimBase64(projectId, instanceName, "data/is-demo-2.jpg",
+                10, 0, createIndexTags));
+
         //搜索相似图像，使用图像的URL(当前仅支持OBS图像的URL)
         printResult(imageSearchService.requestSearchSimUrl(projectId, instanceName, "https://bucketName.obs.myhwclouds.com/image/test2.jpg",
                 10, 0 , null));
+
+        //根据图片自定义标签搜索相似图像，使用图像的URL
+        printResult(imageSearchService.requestSearchSimUrl(projectId, instanceName, "https://bucketName.obs.myhwclouds.com/image/test2.jpg",
+                10, 0 , createIndexTags));
 
         //搜索相似图像,使用图像标签
         printResult(imageSearchService.requestSearchSimTags(projectId, instanceName, 10, 0,createIndexTags));
 
 
        //查询图像索引是否存在
-        printResult(imageSearchService.requestImageCheck(projectId, instanceName, "https://bucketName.obs.myhwclouds.com/image/test1.jpg"));
+        printResult(imageSearchService.requestImageCheck(projectId, instanceName, "https://bucketName.obs.myhuaweicloud.com/image/test1.jpg"));
 
         //通过图片路径删除索引库中对应图片
-        printResult(imageSearchService.requestDeleteIndex(projectId, instanceName, "https://bucketName.obs.myhwclouds.com/image/test1.jpg"));
+        printResult(imageSearchService.requestDeleteIndex(projectId, instanceName, "https://bucketName.obs.myhuaweicloud.com/image/test1.jpg"));
 
         //修改图像索引库中已存在的图片信息
-        printResult("修改" + imageSearchService.requestUpdateTags(projectId, instanceName, "https://bucketName.obs.myhwclouds.com/image/test1.jpg", createIndexTags));
+        printResult("修改" + imageSearchService.requestUpdateTags(projectId, instanceName, "https://bucketName.obs.myhuaweicloud.com/image/test1.jpg", createIndexTags));
 
         // 查询用户实例信息
         printResult(imageSearchService.requestGetServiceInfo(projectId, instanceName));
