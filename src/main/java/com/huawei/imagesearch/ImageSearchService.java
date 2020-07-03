@@ -210,7 +210,7 @@ public class ImageSearchService
         json.put("file", toBase64Str(file));
         json.put("limit", limit);
         json.put("offset", offset);
-        if(null == tags || 0 == tags.size())
+        if(null != tags && 0 != tags.size())
         {
             json.put("tags", tags);
         }
