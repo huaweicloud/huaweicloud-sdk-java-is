@@ -246,7 +246,7 @@ public class ImageSearchService
         json.put("path",path);
         json.put("limit", limit);
         json.put("offset", offset);
-        if(null == tags || 0 == tags.size())
+        if(null != tags && 0 != tags.size())
         {
             json.put("tags", tags);
         }
